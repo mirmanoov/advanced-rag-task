@@ -1,0 +1,83 @@
+[
+  {
+    "question": "How do I create a simple LLM chain in LangChain?",
+    "ground_truth": "To create a simple LLM chain in LangChain, you can use the LLMChain class or the newer LCEL (LangChain Expression Language) syntax with the pipe operator. With LCEL, you combine a prompt template with an LLM using prompt | llm."
+  },
+  {
+    "question": "What is the difference between ChatOpenAI and OpenAI in LangChain?",
+    "ground_truth": "ChatOpenAI is designed for chat models that use message-based interfaces (system, human, AI messages), while OpenAI is for completion models that take raw text prompts. ChatOpenAI is recommended for modern GPT models."
+  },
+  {
+    "question": "How do I use a vector store with LangChain for document retrieval?",
+    "ground_truth": "To use a vector store, first split your documents into chunks, create embeddings using an embedding model, store them in a vector store like Chroma or FAISS, then use similarity_search or as_retriever() to retrieve relevant documents."
+  },
+  {
+    "question": "What are the different types of memory in LangChain?",
+    "ground_truth": "LangChain provides several memory types including ConversationBufferMemory (stores full conversation), ConversationSummaryMemory (summarizes conversation), ConversationBufferWindowMemory (keeps last k exchanges), and ConversationTokenBufferMemory (limits by token count)."
+  },
+  {
+    "question": "How do I create a ReAct agent in LangChain?",
+    "ground_truth": "To create a ReAct agent, use create_react_agent() with an LLM, a list of tools, and a prompt. Then use AgentExecutor to run the agent with invoke() method passing the input."
+  },
+  {
+    "question": "What is LCEL and how does it work?",
+    "ground_truth": "LCEL (LangChain Expression Language) is a declarative way to compose chains using the pipe operator (|). It enables streaming, batch processing, and async operations. Components implementing Runnable interface can be chained together."
+  },
+  {
+    "question": "How do I split documents into chunks in LangChain?",
+    "ground_truth": "Use text splitters like RecursiveCharacterTextSplitter, CharacterTextSplitter, or TokenTextSplitter. RecursiveCharacterTextSplitter is recommended as it tries to keep semantically related text together using a hierarchy of separators."
+  },
+  {
+    "question": "How do I use tools with LangChain agents?",
+    "ground_truth": "Define tools using the @tool decorator or Tool class with name, description, and function. Pass them to create_react_agent() or similar agent constructors. The agent uses tool descriptions to decide which tool to use."
+  },
+  {
+    "question": "What is a retriever in LangChain and how do I create one?",
+    "ground_truth": "A retriever is an interface that returns documents given an unstructured query. Create one from a vector store using vectorstore.as_retriever() or use specialized retrievers like SelfQueryRetriever or ContextualCompressionRetriever."
+  },
+  {
+    "question": "How do I handle streaming responses in LangChain?",
+    "ground_truth": "Use the stream() method on any Runnable or chain. For token-by-token streaming, iterate over the stream response. LCEL chains support streaming by default when the underlying model supports it."
+  },
+  {
+    "question": "How do I create a RAG chain in LangChain?",
+    "ground_truth": "Create a RAG chain by combining a retriever with an LLM using LCEL. Use RunnablePassthrough for the question, retriever for context, format documents, then pass to prompt and LLM. The pattern is: retriever | prompt | llm | parser."
+  },
+  {
+    "question": "What embedding models does LangChain support?",
+    "ground_truth": "LangChain supports many embedding models including OpenAIEmbeddings, HuggingFaceEmbeddings, CohereEmbeddings, GoogleGenerativeAIEmbeddings, and more. Each requires corresponding API keys or local model setup."
+  },
+  {
+    "question": "How do I use output parsers in LangChain?",
+    "ground_truth": "Output parsers parse LLM output into structured formats. Common parsers include StrOutputParser, JsonOutputParser, PydanticOutputParser. Chain them after the LLM: chain = prompt | llm | parser."
+  },
+  {
+    "question": "What is the difference between invoke, batch, and stream in LangChain?",
+    "ground_truth": "invoke() processes a single input synchronously, batch() processes multiple inputs in parallel for efficiency, and stream() returns an iterator for streaming output token by token. All Runnables support these methods."
+  },
+  {
+    "question": "How do I create a conversational RAG system?",
+    "ground_truth": "Combine chat history with RAG by using create_history_aware_retriever to reformulate questions with context, then chain with create_stuff_documents_chain for answering. Store history using memory or pass it explicitly."
+  },
+  {
+    "question": "How do I use callbacks in LangChain?",
+    "ground_truth": "Use callbacks by passing a list of callback handlers to invoke() via config parameter. Implement BaseCallbackHandler methods like on_llm_start, on_chain_end. Use for logging, streaming, or custom behavior."
+  },
+  {
+    "question": "What vector stores does LangChain integrate with?",
+    "ground_truth": "LangChain integrates with many vector stores including Chroma, FAISS, Pinecone, Weaviate, Milvus, Qdrant, PGVector, and more. Each has similar interface with from_documents() and similarity_search() methods."
+  },
+  {
+    "question": "How do I load documents from different sources in LangChain?",
+    "ground_truth": "Use document loaders for different sources: WebBaseLoader for web pages, PyPDFLoader for PDFs, TextLoader for text files, CSVLoader for CSV, DirectoryLoader for directories. All return Document objects."
+  },
+  {
+    "question": "How do I configure temperature and other LLM parameters?",
+    "ground_truth": "Pass parameters when initializing the LLM: ChatOpenAI(temperature=0.7, max_tokens=1000). Or use bind() method to set parameters for a chain: llm.bind(temperature=0). Lower temperature gives more deterministic outputs."
+  },
+  {
+    "question": "What is a RunnableSequence in LangChain?",
+    "ground_truth": "RunnableSequence is created when chaining Runnables with the pipe operator. It executes components in sequence, passing output of one as input to next. It inherits all Runnable methods like invoke, batch, stream."
+  }
+]
+
